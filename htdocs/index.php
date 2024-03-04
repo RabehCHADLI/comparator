@@ -40,6 +40,16 @@
         </div>
         
     </header>
+    <h2 class="mt-3 text-primary">Les Meilleurs destination :</h2>
+    <div class="container ">
+        <div class="row bg-secondary">
+            <div class="col-sm-12">
+            </div>
+            <div class="col-sm-12">
+
+            </div>
+        </div>
+    </div>
 
 <?php include './partial/footer.php' ?>
 
