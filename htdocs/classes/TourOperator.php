@@ -8,6 +8,7 @@ class TourOperator
     private bool $certificate;
     private array $reviews;
     private array $scores;
+    private int $userId;
 
 
     public function __construct(array $data)
@@ -80,6 +81,16 @@ class TourOperator
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
 
         return $this;
     }

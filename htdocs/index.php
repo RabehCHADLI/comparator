@@ -1,5 +1,17 @@
-
+<?php 
+include './config/autoload/autoload.php';
+include './config/connexion/connexion.php';
+$manager = new Manager($db);
+$array = [
+    'location'=>'Rome',
+    'price'=> 1650,
+    
+];
+$tourOperator = new TourOperator($array);
+$tourOperator = $manager->createTourOperator($tourOperator);
+?>
 <?php include './partial/header.php' ?>
+<body>
 <header id='bgheader'>
         <nav class="navbar navbar-expand-lg d-flex justify-content-around">
             
@@ -41,7 +53,7 @@
         
     </header>
     <h2 class="mt-3 text-primary">Les Meilleurs destination :</h2>
-    <div class="container ">
+    <div class="container">
         <div class="row bg-secondary">
             <div class="col-sm-12">
             </div>

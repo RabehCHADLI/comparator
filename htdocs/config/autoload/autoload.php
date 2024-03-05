@@ -16,7 +16,7 @@ ini_set("error_append_string ", "</pre>");
 // Autoload logic
 function chargerClasse($classname)
 {
-    require __DIR__ . '/../classes/' . $classname . '.php';
+    require __DIR__ . '/../../classes/' . $classname . '.php';
 }
 spl_autoload_register('chargerClasse');
 
