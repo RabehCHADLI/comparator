@@ -1,14 +1,6 @@
 <?php 
 include './config/autoload/autoload.php';
 include './config/connexion/connexion.php';
-$manager = new Manager($db);
-$array = [
-    'location'=>'Rome',
-    'price'=> 1650,
-    
-];
-$tourOperator = new TourOperator($array);
-$tourOperator = $manager->createTourOperator($tourOperator);
 ?>
 <?php include './partial/header.php' ?>
 <body>
@@ -19,7 +11,7 @@ $tourOperator = $manager->createTourOperator($tourOperator);
                 <div class="container">
                     <div>
 
-                        <a href="#"><img src="./images/logo.png" alt=""style='width: 200px'></a>
+                        <a href="#"><img src="./images/logo.png" alt=""style='width: 150px'></a>
                         <button class="navbar-toggler collapsed ms-12" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -45,9 +37,9 @@ $tourOperator = $manager->createTourOperator($tourOperator);
         </nav>
         <div>
             <h1 class="text-center text-primary mt-5">LE GPS <br> DES BON PLANS</h1>
-            <form action="" method="post" class="d-flex justify-content-center mt-7">
-                <input type="text" class="input mt-5">
-                 <button class="btn mt-5"><i class="fa-solid fa-plane fa-lg" style="color: #000000;"></i></button>
+            <form action="./pages/listDestinationByLocation.php" method="post" class="d-flex justify-content-center mt-7">
+                <input type="text"name='location'class="input mt-8" placeholder="Londres, Romes , Tunis">
+                 <button class="btn mt-8"><i class="fa-solid fa-plane fa-lg" style="color: #000000;"></i></button>
             </form>
         </div>
         
