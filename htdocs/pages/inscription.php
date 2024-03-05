@@ -12,9 +12,10 @@
             <div>
                 <div class="navbar-collapse collapse" id="navbarText">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a href="inscription.php" class="nav-link active text-primary" aria-current="page" href="#">S’INSCRIRE</a>
-                        </li>
+                    <li class="nav-item">
+                        <a href="connexion.php" class="nav-link active text-primary" aria-current="page">SE CONNECTER</a>
+                    </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-primary" href="#">REVIEW</a>
                         </li>
@@ -27,15 +28,15 @@
         </div>
     </nav>
         <div class="text-center">
-            <h1 class="text-primary">Se Connecter</h1>
+            <h1 class="text-primary">S'inscrire</h1>
         </div>
     <div class="container">
         <form action="" method="post">
             <div class='ms-20 mt-5 mb-1'>
-                <label class="fs-3" for="pseudo">Pseudo :</label>
+                <label class="fs-3" for="pseudo">Nom :</label>
             </div>
             <div class="text-center">
-                <input class="input1" type="text" name="pseudo" placeholder="pseudo">
+                <input class="input1" type="text" name="pseudo" placeholder="Nom">
             </div>
             <div class='ms-20 mt-5 mb-1'>
                 <label class="fs-3" for="pseudo">Mot de passe :</label>
@@ -43,10 +44,14 @@
             <div class="text-center">
                 <input class="input1" type="text" name="password" placeholder="Mot de passe">
             </div>
+            <div class='ms-20 mt-5 mb-1'>
+                <label class="fs-3" for="pseudo">Mail :</label>
+            </div>
+            <div class="text-center">
+                <input class="input1" type="text" name="password" placeholder="Mail">
+            </div>
             <div class="text-center mt-5">
-                <button class="button1 ms-4" type="submit">Se connecter</button>
-                <span class="mx-3"></span>
-                <a class='btn button2 border-2 border-primary ' href="./inscription.php">S'inscrire</a>
+                <button class="button1" type="submit">S'inscrire'</button>
                 <span class="mx-3"></span>
             </div>
         </form>

@@ -114,6 +114,6 @@ class Manager
             $idDestination
         ]);
         $img = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
-        return $img
+        return $img;
     }
 }
