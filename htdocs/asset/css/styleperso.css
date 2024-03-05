@@ -1,4 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Jomolhari&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Khand:wght@300;400;500;600;700&display=swap');
+
+
+body {
+    font-family: "Khand", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
 h1,h2,h3,h4,h5,h6 {
     font-family: "Jomolhari", serif;
     font-weight: 400;
@@ -30,10 +39,46 @@ h1,h2,h3,h4,h5,h6 {
 .input:focus {
     outline:none;
 }
-.carre{
-    width: 1600px;
-    height: 394px;
+
+.title1 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #0F6DAD;
+}
+.input1 {
+    width: 465px;
+    height: 44px;
     flex-shrink: 0;
+    fill: rgba(255, 255, 255, 0.50);
+    stroke-width: 1px;
+    stroke: #0E5673;
     border-radius: 10px;
-    background: rgba(171, 179, 194, 0.20);
+}
+
+.button1 {
+    color: #ffffff;
+    font-size: 20px;
+    width: 216px;
+    height: 43px;
+    background-color: rgba(14, 86, 115, 0.50);
+    stroke-width: 1px;
+    stroke: #0E5673;
+    border-radius: 10px;
+    &:hover {
+        background-color: rgba(14, 86, 115, 0.70);
+    }
+}
+
+.button2 {
+    color: #ffffff;
+    font-size: 20px;
+    width: 216px;
+    height: 43px;
+    background-color: rgba(14, 86, 115, 0);
+    stroke-width: 1px;
+    stroke: #0E5673;
+    border-radius: 10px;
+    &:hover {
+        background-color: rgba(14, 86, 115, 0.70);
+    }
 }
