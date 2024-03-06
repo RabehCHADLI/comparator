@@ -31,7 +31,7 @@
             <h1 class="text-primary">S'inscrire</h1>
         </div>
     <div class="container">
-        <form action="" method="post">
+        <form action="../process/process_add_user_db.php" method="post">
             <div class='ms-20 mt-5 mb-1'>
                 <label class="fs-3" for="pseudo">Nom :</label>
             </div>
@@ -44,11 +44,9 @@
             <div class="text-center">
                 <input class="input1" type="text" name="password" placeholder="Mot de passe">
             </div>
-            <div class='ms-20 mt-5 mb-1'>
-                <label class="fs-3" for="pseudo">Mail :</label>
-            </div>
-            <div class="text-center">
-                <input class="input1" type="text" name="password" placeholder="Mail">
+            <div class="d-flex justify-content-center mt-2">
+                <input type="checkbox" id="entreprise" name="entreprise" />
+                <label class="text-white ms-2" for="entreprise">Compte Entreprise </label>
             </div>
             <div class="text-center mt-5">
                 <button class="button1" type="submit">S'inscrire'</button>
