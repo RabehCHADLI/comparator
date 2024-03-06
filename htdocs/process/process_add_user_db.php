@@ -7,7 +7,7 @@ if (empty($_POST['entreprise'])) {
 }else{
     $user = new User($_POST);
 }
-var_dump($_POST);
+var_dump($user->getEntreprise());
 
 
 if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {

@@ -29,7 +29,7 @@
             <h1 class="text-primary">Se Connecter</h1>
         </div>
     <div class="container d-flex justify-content-center">
-        <form action="" method="post">
+        <form action="../process/process_connextion.php" method="post">
             <div >
                 <label for="pseudo">Pseudo :</label>
             </div>
