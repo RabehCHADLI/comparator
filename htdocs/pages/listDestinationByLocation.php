@@ -3,18 +3,19 @@ include '../config/autoload/autoload.php';
 include '../config/connexion/connexion.php';
 if (!empty($_POST['location'])) {
     $manager = new Manager($db);
-    $destinations = $manager->getDestinationByLocation($_POST['location']);
-    
+    $destinations = $manager->getDestinationByLocation($_POST['location']);  
 }else{
     header('Location: ../index.php');
 }
-include '../partial/header.php'
-?>
+if (!empty($destinations)) {
+include '../partial/header.php';
+    
+    ?>
 
 <body class="bg-secondary">
     <header>
     <nav class="navbar navbar-expand-lg d-flex justify-content-around">
-            
+        
 
             <div class="container">
                 <div>
@@ -31,7 +32,7 @@ include '../partial/header.php'
                             <li class="nav-item">
                                 <a class="nav-link active text-primary" aria-current="page" href="#">Home</a>
                             </li>
-                        <li class="nav-item">
+                            <li class="nav-item">
                             <a class="nav-link text-primary" href="#">Features</a>
                         </li>
                         <li class="nav-item">
@@ -46,16 +47,37 @@ include '../partial/header.php'
     </header>
     <div class="container mt-5">
         <h3 class="text-primary">Les offres pour <?= $destinations[0]['location'] ?> :</h3>
-    <?php 
+        <?php 
     foreach ($destinations as $key) { 
-        $imgs = $manager->getImgByIdDestination($key['id'])
-        
+        $imgs = $manager->getImgByIdDestination($key['id']);
+        $destination = new Destination($key);
+        $tourOperator = $manager->getOperatorByDestination($destination);
         ?>
-        <div class="container bg-light rounded-2">
-            <div class="row">
-                <img src="../images/<?=$imgs[0]['img']?>.png" alt="">
-                <h3><?=$key['location']?></h3>
+        <div class="container bg-light rounded-2 p-2 ">
+            <div class="row ">
+                <div class="col-lg-3 col-sm-12 d-flex flex-row-reverse">
+                        <img class="rounded-start-2" src="../images/<?=$imgs['img']?>" alt="" width="100%">
+                </div>
+                <div class="col-lg-9 col-sm-12">
+                    <h4 class="ms-4 text-primary"><?=$key['location']?> :</h4>
+                    <p><?=$key['description']?></p>
+                    <div class="row">
+                        <p class="col">Agence de voyage : <?=$tourOperator['name']?></p>
 
+                        <p class="col">Note de l'agence</p>
+                        
+                    </div>
+
+                    <form action="" method="post" class="d-flex flex-row-reverse">
+                        <div class="bg-secondary rounded-circle text-center d-flex flex-column justify-content-center"style='width:55px;height:55px'>
+                            
+                        <button class="btn fs-4"><i class="fa-solid fa-plane fa-lg" style="color: #000000; "></i></button>
+                    </div>
+                    <p class="text-primary">Note: /5</p>
+                    <input type="hidden" name="destinationId" value="<?=$key['id']?>">
+                    </form>
+                </div>
+                
             </div>
             
         </div>
@@ -65,4 +87,9 @@ include '../partial/header.php'
     </div>
 
     
-<?php include '../partial/footer.php' ?>
+    <?php include '../partial/footer.php';
+}else{
+    header('Location: ../index.php');
+}
+    
+    ?>

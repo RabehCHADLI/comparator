@@ -75,8 +75,6 @@ class Manager
             $destination->getLocation()
         ]);
         $destination = $preparedRequest->fetch(PDO::FETCH_ASSOC);
-        $idDesti = $this->db->lastInsertId();
-        $destination->setId($destination);
         $preparedRequest = $this->db->prepare('SELECT * FROM `tour_operator`WHERE id = ?');
         $preparedRequest->execute([
             $destination['tourOperatorId']
@@ -99,7 +97,7 @@ class Manager
     }
     public function getDestinationByLocation($location)
     {
-        $preparedRequest = $this->db->prepare('SELECT * FROM `destination` WHERE `location` LIKE ? ORDER BY `price` ASC;');
+        $preparedRequest = $this->db->prepare('SELECT * FROM `destination` WHERE `location` LIKE ? ORDER BY `price`');
         $preparedRequest->execute([
             '%' . $location . '%'
         ]);
@@ -109,22 +107,33 @@ class Manager
     }
     public function getImgByIdDestination($idDestination)
     {
-        $preparedRequest = $this->db->prepare('SELECT * FROM `carousel` WHERE id = ?');
+        $preparedRequest = $this->db->prepare('SELECT * FROM `carousel` WHERE desination_id = ? ORDER BY RAND()');
         $preparedRequest->execute([
             $idDestination
         ]);
-        $img = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
+        $img = $preparedRequest->fetch(PDO::FETCH_ASSOC);
         return $img;
     }
     public function addUserDb (User $user)
     {
-        $preparedRequest = $this->db->prepare('INSERT INTO `user`(`pseudo`, `password`, `entreprise`) VALUES (?,?,?)');
-        $preparedRequest->execute([
-            $user->getPseudo(),
-            $user->getPassword(),
-            $user->getEntreprise()
+        if (!$user->getEntreprise()) {
+            $preparedRequest = $this->db->prepare('INSERT INTO `user`(`pseudo`, `password`, `entreprise`) VALUES (?,?,?)');
+            $preparedRequest->execute([
+                $user->getPseudo(),
+                $user->getPassword(),
+                0
+    
+            ]);
+        }else{
 
-        ]);
+            $preparedRequest = $this->db->prepare('INSERT INTO `user`(`pseudo`, `password`, `entreprise`) VALUES (?,?,?)');
+            $preparedRequest->execute([
+                $user->getPseudo(),
+                $user->getPassword(),
+                $user->getEntreprise()
+    
+            ]);
+        }
         $id = $this->db->lastInsertId();
         $user->setId($id);
         return $user;
