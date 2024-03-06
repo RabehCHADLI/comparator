@@ -1,6 +1,6 @@
 <?php 
-include './config/autoload/autoload.php';
-include './config/connexion/connexion.php';
+include '../config/autoload/autoload.php';
+include '../config/connexion/connexion.php';
 if (!empty($_POST)) {
 
     $manager = new Manager($db);

@@ -7,7 +7,6 @@ if (empty($_POST['entreprise'])) {
 }else{
     $user = new User($_POST);
 }
-var_dump($_POST);
 
 
 if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
@@ -17,6 +16,8 @@ if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
         $password_hash =  password_hash($_POST['password'],PASSWORD_DEFAULT);
         $user->setPassword($password_hash);
         $manager->addUserDb($user);
-
+        header('Location: ../index.php?sucess=Inscription Réeussis');
+    }else{
+        header(('Location : ../index.php?error=Compte existant'));
     }
 }
