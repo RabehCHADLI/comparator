@@ -61,9 +61,9 @@
                     <div class='ms-7 mt-5 mb-1'>
                         <label class="fs-3" for="description">Déscriptif :</label>
                     </div>
-                    <div class="text-center">
-                        <input class="input1" type="text" name="description" placeholder="Déscriptif de la déstination">
-                    </div>
+                    <div class="form-floating text-center">
+                <textarea class="input1"placeholder="Déscriptif" id="floatingTextarea"></textarea>
+            </div>
                 </div>
             </div>
         </form>
