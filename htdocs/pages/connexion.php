@@ -40,7 +40,7 @@
                 <labelfor="pseudo">Mot de passe :</label>
             </div>
             <div class="text-center">
-                <input class="form-control" type="text" name="password" placeholder="Mot de passe">
+                <input class="form-control" type="password" name="password" placeholder="Mot de passe">
             </div>
             <div class="text-center mt-5">
                 <button class="button1 ms-4 mb-3" type="submit">Se connecter</button>
@@ -49,4 +49,4 @@
             </div>
         </form>
     </div>
-<?php include '../partial/footer.php'; ?>
+    <?php include '../partial/footer.php'; ?>

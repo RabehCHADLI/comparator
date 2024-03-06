@@ -7,18 +7,16 @@ include './config/connexion/connexion.php';
 <header id='bgheader'>
         <nav class="navbar navbar-expand-lg d-flex justify-content-around">
             
-
                 <div class="container">
-                    <div>
 
-                        <a href="#"><img src="./images/logo.png" alt=""style='width: 150px'></a>
-                        <button class="navbar-toggler collapsed ms-12" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </div>
-                    <div>
+                    <a href="#" class=""><img src="./images/logo.png" alt=""style='width: 150px'></a>
+                    <button class="navbar-toggler collapseds ms-auto"type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon "></span>
+                    </button>
+                    <div> 
+                </div>
 
-                        <div class="navbar-collapse collapse" id="navbarText" >
+                        <div class="navbar-collapse collapse ms-10" id="navbarText" >
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
                                     <a class="nav-link active text-primary" aria-current="page" href="#">Home</a>
@@ -32,7 +30,7 @@ include './config/connexion/connexion.php';
                         </ul>
                     </div>
                     </div>
-                </div>
+                
                 
         </nav>
         <div>

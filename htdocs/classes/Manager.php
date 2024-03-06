@@ -116,4 +116,48 @@ class Manager
         $img = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
         return $img;
     }
+    public function addUserDb (User $user)
+    {
+        $preparedRequest = $this->db->prepare('INSERT INTO `user`(`pseudo`, `password`, `entreprise`) VALUES (?,?,?)');
+        $preparedRequest->execute([
+            $user->getPseudo(),
+            $user->getPassword(),
+            $user->getEntreprise()
+
+        ]);
+        $id = $this->db->lastInsertId();
+        $user->setId($id);
+        return $user;
+    }
+    public function getUserByPseudo(User $user)
+    {
+    $preparedRequest = $this->db->prepare('SELECT * FROM `user` WHERE pseudo = ?');
+    $preparedRequest->execute([
+        $user->getPseudo()
+    ]);
+    $user = $preparedRequest->fetch(PDO::FETCH_ASSOC);
+    return $user;
+    }
+    public function userConnexion(User $user)
+    {
+        $manager = new Manager($this->db);
+        $userVerify = $manager->getUserByPseudo($user);
+        if ($userVerify) {
+            $passwordVerify = password_verify($user->getPassword(),$userVerify['password']);
+            if ($passwordVerify) {
+                $_SESSION['userId'] = $userVerify['id'];
+                $_SESSION['pseudo'] = $userVerify['pseudo'];
+                if ($userVerify['entreprise']) {
+                    $_SESSION['entreprise'] = true;
+                }
+                $user = new User($userVerify);
+                return $user;
+            }else {
+                return 'Mot de passe incorrect';
+            }
+
+        }else{
+            return 'compte inexistant';
+        }
+    }
 }
