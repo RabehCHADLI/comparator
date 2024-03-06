@@ -26,22 +26,22 @@
             </div>
         </div>
     </nav>
-        <div class="text-center">
-            <h1 class="text-primary">Se Connecter</h1>
-        </div>
+    <div class="text-center">
+        <h1 class="text-primary">Se Connecter</h1>
+    </div>
     <div class="container">
-        <form action="" method="post">
+        <form action="../process/process_connextion.php" method="post">
             <div class='ms-20 mt-5 mb-1'>
-                <label class="fs-3" for="pseudo">Pseudo :</label>
+                <label class="fs-3 text-white" for="pseudo">Pseudo :</label>
             </div>
             <div class="text-center">
                 <input class="input1" type="text" name="pseudo" placeholder="pseudo">
             </div>
             <div class='ms-20 mt-5 mb-1'>
-                <label class="fs-3" for="pseudo">Mot de passe :</label>
+                <label class="fs-3 text-white" for="pseudo">Mot de passe :</label>
             </div>
             <div class="text-center">
-                <input class="input1" type="text" name="password" placeholder="Mot de passe">
+                <input class="input1" type="password" name="password" placeholder="Mot de passe">
             </div>
             <div class="text-center mt-5">
                 <button class="button1 ms-4" type="submit">Se connecter</button>
@@ -51,4 +51,4 @@
             </div>
         </form>
     </div>
-<?php include '../partial/footer.php'; ?>
+    <?php include '../partial/footer.php'; ?>
