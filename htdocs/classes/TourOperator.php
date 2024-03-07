@@ -8,6 +8,7 @@ class TourOperator
     private bool $certificate;
     private array $reviews;
     private array $scores;
+    private string $description;
     private int $userId;
 
 
@@ -91,6 +92,16 @@ class TourOperator
     public function setUserId($userId)
     {
         $this->userId = $userId;
+
+        return $this;
+    }
+    public function getDescription()
+    {
+        return $this->description;
+    } 
+    public function setDescription($description)
+    {
+        $this->description = $description;
 
         return $this;
     }

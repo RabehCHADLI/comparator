@@ -4,6 +4,7 @@ class Destination
     private int $id;
     private string $location;
     private int $price;
+    private string $description;
     private int $tourOperatorId;
     private string $description;
 
@@ -69,6 +70,16 @@ class Destination
         return $this->description;
     }
 
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+    public function getDescription()
+    {
+        return $this->description;
+    }
     public function setDescription($description)
     {
         $this->description = $description;

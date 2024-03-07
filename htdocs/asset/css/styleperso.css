@@ -82,3 +82,9 @@ h1,h2,h3,h4,h5,h6 {
         background-color: rgba(14, 86, 115, 0.70);
     }
 }
+.couleur1 {
+    background: linear-gradient(
+        #ABB3C2 100%,
+
+    );
+}

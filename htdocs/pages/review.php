@@ -5,4 +5,3 @@
     <div class="text-center mb-5">
         <h1 class="text-primary">$Tour Operator</h1>
     </div>
-</div>

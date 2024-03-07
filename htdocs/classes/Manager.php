@@ -23,22 +23,24 @@ class Manager
     }
     public function createTourOperator(TourOperator $tourOperator)
     {
-        $preparedRequest = $this->db->prepare('INSERT INTO `tour_operator`(`name`, `link`, `userId`) VALUES (?,?,?)');
+        $preparedRequest = $this->db->prepare('INSERT INTO `tour_operator`(`name`, `link`, `userId, description`) VALUES (?,?,?, ?)');
         $preparedRequest->execute([
             $tourOperator->getName(),
             $tourOperator->getLink(),
-            $tourOperator->getUserId()
+            $tourOperator->getUserId(),
+            $tourOperator->getDescription()
         ]);
         $idOperator = $this->db->lastInsertId();
         $tourOperator->setId($idOperator);
     }
     public function createAttenteTourOperator(TourOperator $tourOperator)
     {
-        $preparedRequest = $this->db->prepare('INSERT INTO `new_tour_operator`(`name`, `link`, `userId`) VALUES (?,?,?)');
+        $preparedRequest = $this->db->prepare('INSERT INTO `new_tour_operator`(`name`, `link`, `userId, description`) VALUES (?,?,?, ?)');
         $preparedRequest->execute([
             $tourOperator->getName(),
             $tourOperator->getLink(),
-            $tourOperator->getUserId()
+            $tourOperator->getUserId(),
+            $tourOperator->getDescription()
         ]);
         $idOperator = $this->db->lastInsertId();
         $tourOperator->setId($idOperator);
@@ -46,11 +48,13 @@ class Manager
     }
     public function createDestination(Destination $destination)
     {
-        $preparedRequest = $this->db->prepare('INSERT INTO `destination`(`location`, `price`, `tour_operator_id`) VALUES (?,?,?)');
+        $preparedRequest = $this->db->prepare('INSERT INTO `destination`(`location`, `price`, `tour_operator_id`, `description`) VALUES (?,?,?,?)');
         $preparedRequest->execute([
             $destination->getLocation(),
             $destination->getPrice(),
-            $destination->getTourOperatorId()
+            $destination->getTourOperatorId(),
+            $destination->getDescription(),
+
         ]);
         $idDestination = $this->db->lastInsertId();
         $destination->setId($idDestination);
@@ -58,11 +62,12 @@ class Manager
     }
     public function createAttenteDestination(Destination $destination)
     {
-        $preparedRequest = $this->db->prepare('INSERT INTO `new_destination`(`location`, `price`, `tour_operator_id`) VALUES (?,?,?)');
+        $preparedRequest = $this->db->prepare('INSERT INTO `new_destination`(`location`, `price`, `tour_operator_id`, `description`) VALUES (?,?,?,?)');
         $preparedRequest->execute([
             $destination->getLocation(),
             $destination->getPrice(),
-            $destination->getTourOperatorId()
+            $destination->getTourOperatorId(),
+            $destination->getDescription(),
         ]);
         $idDestination = $this->db->lastInsertId();
         $destination->setId($idDestination);
@@ -78,6 +83,16 @@ class Manager
         $preparedRequest = $this->db->prepare('SELECT * FROM `tour_operator`WHERE id = ?');
         $preparedRequest->execute([
             $destination['tourOperatorId']
+        ]);
+        $operator = $preparedRequest->fetch(PDO::FETCH_ASSOC);
+        return $operator;
+
+    }
+    public function getOperatorByUserId($id)
+    {
+        $preparedRequest = $this->db->prepare('SELECT * FROM `tour_operator`WHERE userId = ?');
+        $preparedRequest->execute([
+            $id
         ]);
         $operator = $preparedRequest->fetch(PDO::FETCH_ASSOC);
         return $operator;
