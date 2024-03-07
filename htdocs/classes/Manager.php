@@ -75,6 +75,8 @@ class Manager
             $destination->getLocation()
         ]);
         $destination = $preparedRequest->fetch(PDO::FETCH_ASSOC);
+        $idDesti = $this->db->lastInsertId();
+        $destination->setId($destination);
         $preparedRequest = $this->db->prepare('SELECT * FROM `tour_operator`WHERE id = ?');
         $preparedRequest->execute([
             $destination['tourOperatorId']
@@ -97,7 +99,7 @@ class Manager
     }
     public function getDestinationByLocation($location)
     {
-        $preparedRequest = $this->db->prepare('SELECT * FROM `destination` WHERE `location` LIKE ? ORDER BY `price`');
+        $preparedRequest = $this->db->prepare('SELECT * FROM `destination` WHERE `location` LIKE ? ORDER BY `price` ASC;');
         $preparedRequest->execute([
             '%' . $location . '%'
         ]);
@@ -107,66 +109,11 @@ class Manager
     }
     public function getImgByIdDestination($idDestination)
     {
-        $preparedRequest = $this->db->prepare('SELECT * FROM `carousel` WHERE desination_id = ? ORDER BY RAND()');
+        $preparedRequest = $this->db->prepare('SELECT * FROM `carousel` WHERE id = ?');
         $preparedRequest->execute([
             $idDestination
         ]);
-        $img = $preparedRequest->fetch(PDO::FETCH_ASSOC);
-        return $img;
-    }
-    public function addUserDb (User $user)
-    {   
-        if(!$user->getEntreprise()){
-            $preparedRequest = $this->db->prepare('INSERT INTO `user`(`pseudo`, `password`, `entreprise`) VALUES (?,?,?)');
-            $preparedRequest->execute([
-                $user->getPseudo(),
-                $user->getPassword(),
-                0
-    
-            ]);
-        }else{
-            $preparedRequest = $this->db->prepare('INSERT INTO `user`(`pseudo`, `password`, `entreprise`) VALUES (?,?,?)');
-            $preparedRequest->execute([
-                $user->getPseudo(),
-                $user->getPassword(),
-                $user->getEntreprise()
-    
-            ]);
-
-        }
-        $id = $this->db->lastInsertId();
-        $user->setId($id);
-        return $user;
-    }
-    public function getUserByPseudo(User $user)
-    {
-    $preparedRequest = $this->db->prepare('SELECT * FROM `user` WHERE pseudo = ?');
-    $preparedRequest->execute([
-        $user->getPseudo()
-    ]);
-    $user = $preparedRequest->fetch(PDO::FETCH_ASSOC);
-    return $user;
-    }
-    public function userConnexion(User $user)
-    {
-        $manager = new Manager($this->db);
-        $userVerify = $manager->getUserByPseudo($user);
-        if ($userVerify) {
-            $passwordVerify = password_verify($user->getPassword(),$userVerify['password']);
-            if ($passwordVerify) {
-                $_SESSION['userId'] = $userVerify['id'];
-                $_SESSION['pseudo'] = $userVerify['pseudo'];
-                if ($userVerify['entreprise']) {
-                    $_SESSION['entreprise'] = true;
-                }
-                $user = new User($userVerify);
-                return $user;
-            }else {
-                return 'Mot de passe incorrect';
-            }
-
-        }else{
-            return 'compte inexistant';
-        }
+        $img = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
+        return $img
     }
 }
