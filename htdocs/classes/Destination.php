@@ -6,6 +6,7 @@ class Destination
     private int $price;
     private string $description;
     private int $tourOperatorId;
+    private string $description;
 
     public function __construct(array $data)
     {
@@ -60,6 +61,18 @@ class Destination
     public function setTourOperatorId($tourOperatorId)
     {
         $this->tourOperatorId = $tourOperatorId;
+
+        return $this;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
 
         return $this;
     }

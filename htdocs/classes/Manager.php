@@ -173,6 +173,8 @@ class Manager
                 $_SESSION['pseudo'] = $userVerify['pseudo'];
                 if ($userVerify['entreprise']) {
                     $_SESSION['entreprise'] = true;
+                    $user = new User($userVerify);
+                    return $user;
                 }
                 $user = new User($userVerify);
                 return $user;
@@ -183,5 +185,24 @@ class Manager
         }else{
             return 'compte inexistant';
         }
+    }public function get4destination(){
+        $preparedRequest = $this->db->prepare('SELECT * FROM `destination` WHERE 4 ORDER by RAND()');
+        $preparedRequest->execute([]);
+        $destinations = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
+        $desti = [];
+        foreach ($destinations as $destination) {
+            $forEachdesti = new Destination($destination);
+            array_push($desti,$forEachdesti);
+        }
+        return $desti;
+
+    }
+    public function addImgDb($nameImg,$destiId)
+    {
+        $preparedRequest = $this->db->prepare('INSERT INTO `carousel`(`desination_id`, `img`) VALUES (?,?)');
+        $preparedRequest->execute([
+            $destiId,
+            $nameImg
+        ]);
     }
 }
