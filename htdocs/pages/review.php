@@ -23,6 +23,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-primary" href="#">REVIEW</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" href="#">COMPARER</a>
+                    </li>
                     </ul>
                 </div>
             </div>
@@ -31,4 +34,3 @@
     <div class="text-center mb-5">
         <h1 class="text-primary">$Tour Operator</h1>
     </div>
-</div>
