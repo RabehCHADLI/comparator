@@ -21,6 +21,28 @@ class Manager
 
         return $this;
     }
+    public function getReviewByTourOperatorId($tourOperatorId)
+    {
+        $preparedRequest = $this->db->prepare('SELECT * FROM `review` WHERE `tour_operator_id` = ?');
+        $preparedRequest->execute([
+        $tourOperatorId
+        ]);
+
+        $reviews = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
+        return $reviews;
+
+    }
+
+    public function getNameAuthorId($authorId)
+    {
+        $preparedRequest = $this->db->prepare('SELECT * FROM `author` WHERE `id` = ?');
+        $preparedRequest->execute([
+            $authorId
+            ]);
+            $author = $preparedRequest->fetch(PDO::FETCH_ASSOC);
+            return $author;
+    }
+
     public function createTourOperator(TourOperator $tourOperator)
     {
         $preparedRequest = $this->db->prepare('INSERT INTO `tour_operator`(`name`, `link`, `userId, description`) VALUES (?,?,?, ?)');
@@ -110,6 +132,16 @@ class Manager
         }
         return $desti;
     }
+    public function getDistinationId($id)
+    {
+        $preparedRequest = $this->db->prepare('SELECT * FROM destination WHERE id = ?');
+        $preparedRequest->execute([
+            $id,
+            ]);
+        $destinationId = $preparedRequest->fetch(PDO::FETCH_ASSOC);
+        return $destinationId;
+    }
+
     public function getDestinationByLocation($location)
     {
         $preparedRequest = $this->db->prepare('SELECT * FROM `destination` WHERE `location` LIKE ? ORDER BY `price`');
@@ -127,6 +159,15 @@ class Manager
             $idDestination
         ]);
         $img = $preparedRequest->fetch(PDO::FETCH_ASSOC);
+        return $img;
+    }
+    public function getAllImgByIdDestination($idDestination)
+    {
+        $preparedRequest = $this->db->prepare('SELECT * FROM `carousel` WHERE desination_id = ? ORDER BY RAND()');
+        $preparedRequest->execute([
+            $idDestination
+        ]);
+        $img = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
         return $img;
     }
     public function addUserDb (User $user)

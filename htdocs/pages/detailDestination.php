@@ -3,46 +3,55 @@ include '../config/autoload/autoload.php';
 include '../config/connexion/connexion.php';
 include '../partial/header.php';
 
-    $manager= new Manager($db);
-    $destination = $manager->getDestinationByLocation(3);
+$manager = new Manager($db);
+$destination = $manager->getDistinationId(3);
+$images = $manager->getAllImgByIdDestination($destination['id']);
+$review = $manager->getReviewByTourOperatorId(3);
+$author = $manager->getNameAuthorId(3);
 
 ?>
-
 <body style="background-color: #ABB3C2;">
+    <?php include '../partial/navbar.php' ?>
 
-<div class="text-center">
-    <?php if (isset($destination[3]['location'])): ?>
-        <h1 class="text-primary"><?= $destination[0]['location'] ?></h1>
-</div>
-            <div class="row">
+    <div class="text-center">
+        <h1 class="text-primary">
+            <?= $destination['location'] ?>
+        </h1>
+    </div>
+    <div class="container">
+        <div class="row">
             <div class="col-md-6">
-                <div id="carouselExampleIndicators" class="carousel slide">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-            <img src="..." class="d-block w-100" alt="...">
+            <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+  <div class="carousel-inner">
+  <?php foreach ($images as $key => $image) { ?>
+        <div class="carousel-item">
+        <img src="../images/<?=$image['img']?>" class="d-block w-100" alt="...">
+      </div>
+<?php } ?>
+
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
             </div>
-            <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
+
+            <div class="col-md-6">
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-            </div>
-            </div>  
-        </div> 
-    
-<?php include '../partial/footer.php';?>
+    </div>
+
+
+    <?php
+    include '../partial/footer.php';
+    ?>
+    <?php foreach ($images as $key => $image) { ?>
+        <div class="carousel-item">
+        <img src="../images/<?=$image['img']?>" class="d-block w-100" alt="...">
+      </div>
+<?php } ?>
