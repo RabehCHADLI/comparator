@@ -115,8 +115,8 @@ class Manager
         return $img;
     }
     public function addUserDb (User $user)
-    {
-        if (!$user->getEntreprise()) {
+    {   
+        if(!$user->getEntreprise()){
             $preparedRequest = $this->db->prepare('INSERT INTO `user`(`pseudo`, `password`, `entreprise`) VALUES (?,?,?)');
             $preparedRequest->execute([
                 $user->getPseudo(),
@@ -125,7 +125,6 @@ class Manager
     
             ]);
         }else{
-
             $preparedRequest = $this->db->prepare('INSERT INTO `user`(`pseudo`, `password`, `entreprise`) VALUES (?,?,?)');
             $preparedRequest->execute([
                 $user->getPseudo(),
@@ -133,6 +132,7 @@ class Manager
                 $user->getEntreprise()
     
             ]);
+
         }
         $id = $this->db->lastInsertId();
         $user->setId($id);

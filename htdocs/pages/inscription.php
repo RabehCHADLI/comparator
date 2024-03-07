@@ -45,7 +45,7 @@
                 <labelfor="pseudo">Mot de passe :</label>
             </div>
             <div class="text-center">
-                <input class="form-control" type="text" name="password" placeholder="Mot de passe">
+                <input class="form-control" type="password" name="password" placeholder="Mot de passe">
             </div>
             <div class="d-flex justify-content-center mt-2">
                 <input type="checkbox" id="entreprise" name="entreprise" />
