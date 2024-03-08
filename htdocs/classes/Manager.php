@@ -262,7 +262,7 @@ class Manager
         $preparedRequest->execute([
             $operatorId,
         ]);
-        $msghAll = $preparedRequest->fetch(PDO::FETCH_ASSOC);
+        $msghAll = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
         return $msghAll;
 
     } 
@@ -305,6 +305,21 @@ class Manager
         }
         return $desti;
     }
->>>>>>> e4f6857cf86965121938528d52fc6fa363395507
-}
+    public function addReviewAndAuthorDb (Review $review,$nameAuthor)
+    {
+        $preparedRequest = $this->db->prepare('INSERT INTO `author`(`name`) VALUES (?)');
+        $preparedRequest->execute([
+            $nameAuthor,
+        ]);
+        $id = $this->db->lastInsertId();
+        $preparedRequest = $this->db->prepare('INSERT INTO `review`(`message`, `tour_operator_id`, `author_id`) VALUES (?,?,?)');
+        $preparedRequest->execute([
+            $review->getMessage(),
+            $review->getTourOperatorId(),
+            $id
+        ]);
+    
+  
+    }
+
 }
