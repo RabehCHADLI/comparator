@@ -249,4 +249,43 @@ class Manager
             $nameImg
         ]);
     }
+    public function getAllOperator()
+    {
+        $preparedRequest = $this->db->prepare('SELECT * FROM `tour_operator`');
+        $preparedRequest->execute([
+
+        ]);
+        $operators = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
+        $operatorsObject = [];
+        foreach ($operators as $key => $value) {
+            $operator = new TourOperator($value);
+            array_push($operatorsObject,$operator);
+        }
+        return $operatorsObject;
+    }
+    public function getOperatorById($id)
+    {
+        $preparedRequest = $this->db->prepare('SELECT * FROM `tour_operator` WHERE id = ?');
+        $preparedRequest->execute([
+            $id
+        ]);
+        $operator = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
+
+            $operatorObject = new TourOperator($operator[0]);
+        return $operatorObject;
+    }
+    public function getAllDestinationByOperatorId ($operatorId)
+    {
+        $preparedRequest = $this->db->prepare('SELECT * FROM `destination` WHERE tourOperatorId = ?');
+        $preparedRequest->execute([
+            $operatorId
+        ]);
+        $destinations = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
+        $desti = [];
+        foreach ($destinations as $destination) {
+            $forEachdesti = new Destination($destination);
+            array_push($desti,$forEachdesti);
+        }
+        return $desti;
+    }
 }

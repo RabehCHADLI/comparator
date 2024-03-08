@@ -32,7 +32,7 @@ include '../config/autoload/autoload.php';
                         <label class="fs-3" for="description">Description :</label>
                     </div>
                     <div class="form-floating text-center">
-                        <textarea class="form-control"name='description' placeholder="Description" id="floatingTextarea"></textarea>
+                        <textarea class="form-control"name='description' placeholder="Description de 350 caractères" id="floatingTextarea"></textarea>
             </div>
             <div class="text-center mt-5">
                 <button class="button1" type="submit">S'inscrire</button>
