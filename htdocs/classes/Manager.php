@@ -306,4 +306,23 @@ class Manager
         return $desti;
     }
 
-}
+    
+    public function addReviewAndAuthorDb (Review $review,$nameAuthor)
+    {
+        $preparedRequest = $this->db->prepare('INSERT INTO `author`(`name`) VALUES (?)');
+        $preparedRequest->execute([
+            $nameAuthor,
+        ]);
+        $id = $this->db->lastInsertId();
+        $preparedRequest = $this->db->prepare('INSERT INTO `review`(`message`, `tour_operator_id`, `author_id`) VALUES (?,?,?)');
+        $preparedRequest->execute([
+            $review->getMessage(),
+            $review->getTourOperatorId(),
+            $id
+        ]);
+    
+    }
+  
+    }
+
+

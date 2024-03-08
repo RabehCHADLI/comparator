@@ -5,7 +5,9 @@ class Review
 {
     private int $id;
     private string $message;
-    private string $author;
+    private int $authorId;
+    private int $tourOperatorId;
+    
 
 
     public function __construct(array $data)
@@ -32,13 +34,13 @@ class Review
 
         return $this;
     }
-    public function getAuthor()
+    public function getAuthorId()
     {
-        return $this->author;
+        return $this->authorId;
     }
-    public function setAuthor($author)
+    public function setAuthorId($authorId)
     {
-        $this->author = $author;
+        $this->authorId = $authorId;
 
         return $this;
     }
@@ -49,6 +51,16 @@ class Review
     public function setMessage($message)
     {
         $this->message = $message;
+
+        return $this;
+    }
+    public function getTourOperatorId()
+    {
+        return $this->tourOperatorId;
+    }
+    public function setTourOperatorId($tourOperatorId)
+    {
+        $this->tourOperatorId = $tourOperatorId;
 
         return $this;
     }
