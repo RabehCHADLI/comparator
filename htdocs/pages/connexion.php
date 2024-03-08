@@ -19,7 +19,7 @@
             <div class="text-center">
                 <input class="form-control" type="password" name="password" placeholder="Mot de passe">
             </div>
-            <div class="text-center mt-5">
+            <div class="text-center mt-4">
                 <button class="button1 ms-4 mb-3" type="submit">Se connecter</button>
                 <span class="mx-3"></span>
                 <a class='btn button2 border-2 border-primary' href="./inscription.php">S'inscrire</a>
