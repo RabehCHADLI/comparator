@@ -43,6 +43,13 @@ class Manager
             return $author;
     }
 
+    public function getAuthorAll()
+    {
+        $preparedRequest = $this->db->prepare('SELECT * FROM `author`');
+        $preparedRequest->execute();
+        $authorAll = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
+        return $authorAll;
+    }
     public function createTourOperator(TourOperator $tourOperator)
     {
         $preparedRequest = $this->db->prepare('INSERT INTO `tour_operator`(`name`, `link`, `userId, description`) VALUES (?,?,?, ?)');
@@ -249,4 +256,13 @@ class Manager
             $nameImg
         ]);
     }
+    public function getReviewAndAuthorByOperatorId($operatorId)
+    {
+        $preparedRequest = $this->db->prepare('SELECT * FROM `review` INNER JOIN author on review.author_id = author.id WHERE tour_operator_id = ?;');
+        $preparedRequest->execute([
+            $operatorId,
+        ]);
+        $msghAll = $preparedRequest->fetch(PDO::FETCH_ASSOC);
+        return $msghAll;
+}
 }
