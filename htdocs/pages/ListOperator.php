@@ -7,26 +7,28 @@ $manager = new Manager($db);
 $operator = $manager->getAllOperator();
 ?>
 
-<body style="background-color: #ABB3C2;">
+<body>
     <?php include '../partial/navbar.php'; ?>
-    <div class="container mt-5">
-        <h1 class="text-primary">Agences disponibles :</h1>
-        <div class=" d-flex flex-wrap">
+    <div class="container">
+        <h1 class="">Agences disponibles :</h1>
 
-            <?php foreach ($operator as $key => $value) {
-                ?>
-                
-                <div class="card m-4" style="width: 24rem;">
-                    <div class="card-body">
-                        <h5 class="card-title"><?=$value->getName()?></h5>
-                        <p class="card-text"><?=$value->getDescription()?></p>
-                        <form action="./detailTour.php" method="post">
-                            <input type="hidden" name="operatorId" value="<?=$value->getId()?>">
-                            <button type="submit" class="btn btn-primary">VOIR LES REVIEWS</button>
-                        </form>
-                    </div>
-                </div>
-                <?php   }?>
-            </div>
+    </div>
+
+    <div class="container mt-5 border border-1">
+        <div class="row d-flex justify-content-around">
+            <?php
+            foreach ($operator as $key => $value) {
+            ?>
+                <a href="./detailTour.php?opId=<?= $value->getId() ?>" class="data-card col text-center">
+                    <h3><?= $value->getName() ?></h3>
+                    <h5><?= $value->getLink() ?></h5>
+                    <p><?= $value->getDescription() ?></p>
+                    <span class="link-text">
+                        En Savoir plus
+                    </span>
+                </a>
+            <?php   }
+            ?>
+        </div>
 
     </div>

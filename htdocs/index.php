@@ -5,6 +5,7 @@ $manager = new Manager($db);
 $destinations = $manager->get4destination();
 
 
+
 include './partial/header.php'
 ?>
 
@@ -31,10 +32,8 @@ include './partial/header.php'
                                         <a href="./pages/add_Tour.php" class="nav-link active text-primary" aria-current="page">Demande Tour Operator</a>
                                     </li>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-primary" href="./pages/ListOperator.php">Agences</a>
-                                    </li>
-                                    <li class="nav-item">
+                                    <li class="nav-itales attractions touristiques incluent le Palais de Buckingham, la Tour de Londres, le British Museum et le London Eye. La gastronomie londonienne est réputée pour sa diversité, allant des pubs traditionnels aux restaurants étoilés Michelin. Bien que généralement considérée comme sûre, il est conseillé aux visiteurs de rester vigilants, en particulier dans les zones touristiques très fréquentées de la ville. En somme, Londres offre une expérience riche en histoire, culture et divertissement, attirant les visiteurs du monde entier.
+                                    <li class=" nav-item">
                                         <a class="nav-link text-primary" href="./process/process_logout.php">Deconnecter</a>
                                     </li>
                                 <?php  } else if (empty($_SESSION['entreprise']) && !empty($_SESSION)) {
@@ -89,28 +88,29 @@ include './partial/header.php'
                 $imgs = $manager->getImgByIdDestination($value->getId());
                 $tourOperator = $manager->getOperatorByDestination($value);
             ?>
-                <div class="row bg-light m-2 rounded-3 p-2">
-                    <div class="col-lg-3 col-sm-12 d-flex flex-row-reverse">
-                        <img class="rounded-start-2" src="../images/<?= $imgs['img'] ?>" alt="" width="100%">
+                <div class="row bg-light m-2 rounded-3 p-2 image">
+                    <div class="col-lg-3 col-sm-12 d-flex flex-column justify-content-center">
+                        <img class="rounded-start-2" src="../images/<?= $imgs['img'] ?>" alt="">
                     </div>
                     <div class="col-lg-9 col-sm-12">
                         <h4 class="ms-4 text-primary"><?= $value->getLocation() ?> :</h4>
-                        <p class="mt-3"><?= $value->getDescription() ?></p>
+                        <p class="mt-3"><?= $value->getDescription2() ?></p>
                         <div class="row mt-4">
-                            <p class="col">Agence de voyage : <a href=""><?= $tourOperator['name'] ?></a></p>
+                            <p class="col">Agence de voyage : <a href="<?= $tourOperator['link'] ?>"><?= $tourOperator['name'] ?></a></p>
 
                             <p class="col">Note de l'agence</p>
 
                         </div>
 
-                        <form action="" method="post" class="d-flex flex-row-reverse">
+                        <form action="./pages/detailDestination.php" method="post" class="d-flex flex-row-reverse">
 
                             <div class="bg-secondary rounded-circle text-center d-flex flex-column justify-content-center" style='width:55px;height:55px'>
 
                                 <button class="btn fs-4"><i class="fa-solid fa-plane fa-lg" style="color: #000000; "></i></button>
                             </div>
                             <p class="text-primary">Note: /5</p>
-                            <input type="hidden" name="destinationId" value="<?= $key['id'] ?>">
+
+                            <input type="hidden" name="destinationId" value=" <?= $value->getId() ?>">
                         </form>
                     </div>
 

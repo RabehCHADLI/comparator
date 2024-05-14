@@ -25,12 +25,11 @@ class Manager
     {
         $preparedRequest = $this->db->prepare('SELECT * FROM `review` WHERE `tour_operator_id` = ?');
         $preparedRequest->execute([
-        $tourOperatorId
+            $tourOperatorId
         ]);
 
         $reviews = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
         return $reviews;
-
     }
 
     public function getNameAuthorId($authorId)
@@ -38,9 +37,9 @@ class Manager
         $preparedRequest = $this->db->prepare('SELECT * FROM `author` WHERE `id` = ?');
         $preparedRequest->execute([
             $authorId
-            ]);
-            $author = $preparedRequest->fetch(PDO::FETCH_ASSOC);
-            return $author;
+        ]);
+        $author = $preparedRequest->fetch(PDO::FETCH_ASSOC);
+        return $author;
     }
 
     public function getAuthorAll()
@@ -86,7 +85,7 @@ class Manager
         $destination->setId($idDestination);
         return $destination;
     }
-    public function createAttenteDestination(Destination $destination,$userId)
+    public function createAttenteDestination(Destination $destination, $userId)
     {
         $preparedRequest = $this->db->prepare('SELECT * FROM `new_tour_operator` where userId = ?');
         $preparedRequest->execute([
@@ -118,7 +117,6 @@ class Manager
         ]);
         $operator = $preparedRequest->fetch(PDO::FETCH_ASSOC);
         return $operator;
-
     }
     public function getOperatorByUserId($id)
     {
@@ -128,7 +126,6 @@ class Manager
         ]);
         $operator = $preparedRequest->fetch(PDO::FETCH_ASSOC);
         return $operator;
-
     }
     public function getAllDestination()
     {
@@ -138,7 +135,7 @@ class Manager
         $desti = [];
         foreach ($destinations as $destination) {
             $forEachdesti = new Destination($destination);
-            array_push($desti,$forEachdesti);
+            array_push($desti, $forEachdesti);
         }
         return $desti;
     }
@@ -147,7 +144,7 @@ class Manager
         $preparedRequest = $this->db->prepare('SELECT * FROM destination WHERE id = ?');
         $preparedRequest->execute([
             $id,
-            ]);
+        ]);
         $destinationId = $preparedRequest->fetch(PDO::FETCH_ASSOC);
         return $destinationId;
     }
@@ -160,7 +157,6 @@ class Manager
         ]);
         $destinations = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
         return $destinations;
-
     }
     public function getImgByIdDestination($idDestination)
     {
@@ -180,25 +176,24 @@ class Manager
         $img = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
         return $img;
     }
-    public function addUserDb (User $user)
-    {   
-        if(!$user->getEntreprise()){
+    public function addUserDb(User $user)
+    {
+        if (!$user->getEntreprise()) {
             $preparedRequest = $this->db->prepare('INSERT INTO `user`(`pseudo`, `password`, `entreprise`) VALUES (?,?,?)');
             $preparedRequest->execute([
                 $user->getPseudo(),
                 $user->getPassword(),
                 0
-    
+
             ]);
-        }else{
+        } else {
             $preparedRequest = $this->db->prepare('INSERT INTO `user`(`pseudo`, `password`, `entreprise`) VALUES (?,?,?)');
             $preparedRequest->execute([
                 $user->getPseudo(),
                 $user->getPassword(),
                 $user->getEntreprise()
-    
-            ]);
 
+            ]);
         }
         $id = $this->db->lastInsertId();
         $user->setId($id);
@@ -206,19 +201,19 @@ class Manager
     }
     public function getUserByPseudo(User $user)
     {
-    $preparedRequest = $this->db->prepare('SELECT * FROM `user` WHERE pseudo = ?');
-    $preparedRequest->execute([
-        $user->getPseudo()
-    ]);
-    $user = $preparedRequest->fetch(PDO::FETCH_ASSOC);
-    return $user;
+        $preparedRequest = $this->db->prepare('SELECT * FROM `user` WHERE pseudo = ?');
+        $preparedRequest->execute([
+            $user->getPseudo()
+        ]);
+        $user = $preparedRequest->fetch(PDO::FETCH_ASSOC);
+        return $user;
     }
     public function userConnexion(User $user)
     {
         $manager = new Manager($this->db);
         $userVerify = $manager->getUserByPseudo($user);
         if ($userVerify) {
-            $passwordVerify = password_verify($user->getPassword(),$userVerify['password']);
+            $passwordVerify = password_verify($user->getPassword(), $userVerify['password']);
             if ($passwordVerify) {
                 $_SESSION['userId'] = $userVerify['id'];
                 $_SESSION['pseudo'] = $userVerify['pseudo'];
@@ -229,26 +224,26 @@ class Manager
                 }
                 $user = new User($userVerify);
                 return $user;
-            }else {
+            } else {
                 return 'Mot de passe incorrect';
             }
-
-        }else{
+        } else {
             return 'compte inexistant';
         }
-    }public function get4destination(){
+    }
+    public function get4destination()
+    {
         $preparedRequest = $this->db->prepare('SELECT * FROM `destination` WHERE 4 ORDER by RAND()');
         $preparedRequest->execute([]);
         $destinations = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
         $desti = [];
         foreach ($destinations as $destination) {
             $forEachdesti = new Destination($destination);
-            array_push($desti,$forEachdesti);
+            array_push($desti, $forEachdesti);
         }
         return $desti;
-
     }
-    public function addImgDb($nameImg,$destiId)
+    public function addImgDb($nameImg, $destiId)
     {
         $preparedRequest = $this->db->prepare('INSERT INTO `carousel`(`desination_id`, `img`) VALUES (?,?)');
         $preparedRequest->execute([
@@ -264,19 +259,16 @@ class Manager
         ]);
         $msghAll = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
         return $msghAll;
-
-    } 
+    }
     public function getAllOperator()
     {
         $preparedRequest = $this->db->prepare('SELECT * FROM `tour_operator`');
-        $preparedRequest->execute([
-
-        ]);
+        $preparedRequest->execute([]);
         $operators = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
         $operatorsObject = [];
         foreach ($operators as $key => $value) {
             $operator = new TourOperator($value);
-            array_push($operatorsObject,$operator);
+            array_push($operatorsObject, $operator);
         }
         return $operatorsObject;
     }
@@ -288,10 +280,10 @@ class Manager
         ]);
         $operator = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
 
-            $operatorObject = new TourOperator($operator[0]);
+        $operatorObject = new TourOperator($operator[0]);
         return $operatorObject;
     }
-    public function getAllDestinationByOperatorId ($operatorId)
+    public function getAllDestinationByOperatorId($operatorId)
     {
         $preparedRequest = $this->db->prepare('SELECT * FROM `destination` WHERE tourOperatorId = ?');
         $preparedRequest->execute([
@@ -301,11 +293,11 @@ class Manager
         $desti = [];
         foreach ($destinations as $destination) {
             $forEachdesti = new Destination($destination);
-            array_push($desti,$forEachdesti);
+            array_push($desti, $forEachdesti);
         }
         return $desti;
     }
-    public function addReviewAndAuthorDb (Review $review,$nameAuthor)
+    public function addReviewAndAuthorDb(Review $review, $nameAuthor)
     {
         $preparedRequest = $this->db->prepare('INSERT INTO `author`(`name`) VALUES (?)');
         $preparedRequest->execute([
@@ -318,8 +310,40 @@ class Manager
             $review->getTourOperatorId(),
             $id
         ]);
-    
-  
     }
+    public function getAllAttenteDestination()
+    {
+        $preparedRequest = $this->db->prepare('SELECT new_destination.*, tour_operator.*, tour_operator.id AS tourOperatorId 
+FROM new_destination 
+INNER JOIN tour_operator ON tour_operator.id = new_destination.tour_operator_id;
+');
+        $preparedRequest->execute();
+        $destinations = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
+        return $destinations;
+    }
+    public function getAllAttenteOperator()
+    {
+        $preparedRequest = $this->db->prepare('SELECT * FROM `new_tour_operator`');
+        $preparedRequest->execute();
+        $attenteOperator = $preparedRequest->fetchAll(PDO::FETCH_ASSOC);
+        return $attenteOperator;
+    }
+    public function addAgence(TourOperator $tourOperator)
+    {
 
+        $preparedRequest = $this->db->prepare('INSERT INTO `tour_operator`(`name`, `link`, `userId`, `description`) VALUES (?,?,?,?)');
+        $preparedRequest->execute([
+            $tourOperator->getName(),
+            $tourOperator->getLink(),
+            $tourOperator->getUserId(),
+            $tourOperator->getDescription()
+        ]);
+    }
+    public function delAttenteOperator(TourOperator $tour)
+    {
+        $preparedRequest = $this->db->prepare('DELETE FROM `tour_operator` WHERE name = ?');
+        $preparedRequest->execute([
+            $tour->getName()
+        ]);
+    }
 }
