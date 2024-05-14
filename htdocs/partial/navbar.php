@@ -40,10 +40,10 @@
                             </li>
                         <?php       } else { ?>
                             <li class="nav-item">
-                                <a class="nav-link text-primary" href="../">Connecter</a>
+                                <a class="nav-link text-primary" href="./connexion.php">Connecter</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-primary" href="#">S'inscrire</a>
+                                <a class="nav-link text-primary" href="./inscription.php">S'inscrire</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-primary" href="./ListOperator.php">Agences</a>
