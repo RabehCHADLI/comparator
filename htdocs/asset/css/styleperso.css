@@ -18,6 +18,12 @@ body {
     border: solid 1px #000;
 }
 
+th {
+    font-family: "Khand", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
 h1,
 h2,
 h3,
@@ -297,4 +303,22 @@ a {
 .lien:hover {
     background-color: #e0e0e0;
 
+}
+
+@keyframes fadeOutUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}
+
+.fadeOutUp {
+    animation-name: fadeOutUp;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
 }

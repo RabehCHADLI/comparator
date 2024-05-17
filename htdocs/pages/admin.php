@@ -30,14 +30,11 @@ include '../partial/header.php';
     </header>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2 bg-white p-4 border border-1 border-secondary rounded-3 ">
+            <div class="col-2 bg-white p-4 border border-1 border-secondary rounded-3 " style="height: max-content;">
                 <div class="d-flex flex-column">
-
                     <a class="lien" href="./admin_Agence.php">Liste Demande D'Agence</a>
                     <a class="lien" href="./admin_destination.php">Liste Demande Destination</a>
                     <a class="lien" href="./admin_User.php">Liste User</a>
-                    <a class="lien" href="./admin_validation_agence.php">Accepter une demande d'agence</a>
-                    <a class="lien" href="./admin_User.php">Accepter une destination</a>
                 </div>
             </div>
         </div>

@@ -92,13 +92,14 @@ class Manager
             $userId
         ]);
         $tour = $preparedRequest->fetch(PDO::FETCH_ASSOC);
-        var_dump($tour);
-        $preparedRequest = $this->db->prepare('INSERT INTO `new_destination`(`location`, `price`, `tour_operator_id`, `description`) VALUES (?,?,?,?)');
+
+        $preparedRequest = $this->db->prepare('INSERT INTO `new_destination`(`location`, `price`, `tour_operator_id`, `description`,userId) VALUES (?,?,?,?,?)');
         $preparedRequest->execute([
             $destination->getLocation(),
             $destination->getPrice(),
             $tour['id'],
-            $destination->getDescription()
+            $destination->getDescription(),
+            $userId
         ]);
         $idDestination = $this->db->lastInsertId();
         $destination->setId($idDestination);
@@ -345,5 +346,17 @@ INNER JOIN tour_operator ON tour_operator.id = new_destination.tour_operator_id;
         $preparedRequest->execute([
             $tour->getName()
         ]);
+    }
+    public function getTourOperatorByUser($id)
+    {
+        $preparedRequest = $this->db->prepare('SELECT `id`, `name`, `link`, `userId`, `description` FROM `tour_operator` WHERE userId = ?');
+        $preparedRequest->execute([
+            $id
+        ]);
+        $tour = $preparedRequest->fetch(PDO::FETCH_ASSOC);
+        return $tour;
+    }
+    public function getAttenteDestinationById()
+    {
     }
 }
