@@ -17,7 +17,15 @@ $msg = $manager->getReviewAndAuthorByOperatorId($_POST['destinationId']);
 
 <body>
   <?php include '../partial/navbar.php' ?>
+  <style>
+    #description {
+      max-height: 50%;
+    }
 
+    #description:hover {
+      max-height: 100%;
+    }
+  </style>
   <div class="text-center">
     <h1 class="text-primary mb-6">
       <?= $destination['location'] ?>
@@ -84,9 +92,9 @@ $msg = $manager->getReviewAndAuthorByOperatorId($_POST['destinationId']);
         <div class="col">
           <p class="bg-light border border-1 border-primary p-3 rounded-3 image mt-3">Le voyage à <?= $destination['price'] ?>€ proposé par <?= $operator['name'] ?> semble être une excellente opportunité pour une escapade relaxante.
           </p>
-          <button href="<?= $operator['link'] ?>" class="btn btn-primary">
+          <a href="<?= $operator['link'] ?>" class="btn btn-primary" target="_blank">
             <?= $operator['name'] ?>
-          </button>
+          </a>
         </div>
         <div class="col">
           <div class='mx-1 mt-5 mb-5 d-flex'>
@@ -95,12 +103,11 @@ $msg = $manager->getReviewAndAuthorByOperatorId($_POST['destinationId']);
         </div>
       </div>
     </div>
-    <div class='mx-5 mt-5 mb-5 border border-1 border-primary p-4 rounded-3 image'>
+    <div id="description" class='mx-5 mt-5 mb-5 border border-1 border-primary p-4 rounded-3 '>
       <h4>Description :</h4>
       <p class="bg-light p-2 rounded-3">
         <?= $destination['description'] ?>
       </p>
     </div>
-
     <?php include '../partial/footer.php'; ?>
 </body>

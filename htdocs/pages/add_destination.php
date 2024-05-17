@@ -43,7 +43,7 @@ if (empty($_SESSION['entreprise'])) {
                         <label class="fs-3" for="description">Déscriptif :</label>
                     </div>
                     <div class="form-floating text-center">
-                        <textarea class="form-control"name='description' placeholder="Déscriptif" id="floatingTextarea"></textarea>
+                        <textarea class="form-control" name='description' placeholder="Déscriptif" id="floatingTextarea"></textarea>
                     </div>
                 </div>
             </div>

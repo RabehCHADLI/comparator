@@ -1,3 +1,14 @@
+<?php if (!empty($_GET['success'])) { ?>
+    <div class="alert alert-success" role="alert">
+        <?= $_GET['success'] ?>
+    </div>
+<?php } ?>
+
+<?php if (!empty($_GET['error'])) { ?>
+    <div class="alert alert-danger" role="alert">
+        <?= $_GET['error'] ?>
+    </div>
+<?php } ?>
 <nav class="navbar navbar-expand-lg d-flex justify-content-around">
 
     <div class="container">
@@ -16,7 +27,7 @@
                                 <a href="../pages/add_destination.php" class="nav-link active text-primary" aria-current="page">Ajout d'une destination</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../pages/add_Tour.php" class="nav-link active text-primary" aria-current="page">Demande Tour Operator</a>
+                                <a href="../pages/add_Tour.php" class="nav-link active text-primary" aria-current="page">Ajouter une agence</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-primary" href="../process/process_logout.php">Deconnecter</a>
